@@ -32,7 +32,8 @@ module ElasticSearchable
       when String
         query[:sort] = sort
       end
-
+      
+      #TODO: check what's indise the hits['hits'] object
       response = ElasticSearchable.request :get, index_type_path('_search'), :query => query, :json_body => options
       hits = response['hits']
       ids = hits['hits'].collect {|h| h['_id'].to_i }
